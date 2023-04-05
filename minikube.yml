@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hola-mundo
+spec:
+  selector:
+    matchLabels:
+      app: hola-mundo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hola-mundo
+    spec:
+      containers:
+      - name: hola-mundo
+        image: mi-imagen
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hola-mundo
+spec:
+  selector:
+    app: hola-mundo
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+---
